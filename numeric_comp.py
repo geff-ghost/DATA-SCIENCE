@@ -22,7 +22,7 @@ print(type(kanto))
 print(type(weights))
 
 # Indexing in Numpy
-print(weights[0])
+print(weights[0]) 
 print(unova[2])
 
 # Operating on Numpy arrays
@@ -74,4 +74,21 @@ climate_data = np.genfromtxt('climate.txt', delimiter=',', skip_header=1)
 print('\nReading a file into numpy array')
 print(climate_data)
 print(climate_data.shape)
+
+weights = np.array([0.3, 0.2, 0.5])
+yields = climate_data @ weights
+
+print(f'Yields: {yields}')
+print(yields.shape)
+
+climate_results = np.concatenate((climate_data, yields.reshape(5, 1)), axis=1)
+print(climate_results)
+
+# Final result for our computation
+np.savetxt(
+    'climate_result.txt',
+    climate_results,
+    fmt= '%.2f',
+    header = 'temperature,rainfall,humidity,yeild_apples',
+    comments= '')
 
