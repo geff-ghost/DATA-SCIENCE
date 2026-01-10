@@ -34,3 +34,37 @@ arr1 = np.array([1, 2, 3])
 arr2 = np.array([4, 5, 6])
 print(arr1 * arr2)
 print(arr1 + arr2)
+
+# Multi-dimensional Numpy arrays
+# 2D array (matrix)
+climate_data = np.array([
+    [73, 67, 43],
+    [91, 88, 64],
+    [87, 134, 58],
+    [102, 43, 37],
+    [69, 96, 70]
+])
+print()
+print(climate_data)
+print(climate_data.shape)
+
+# 3D array
+arr3 = np.array([
+    [[11, 12, 13],
+    [13, 14, 15]],
+
+    [[15, 16, 17],
+    [17, 18, 19.5]]
+])
+print()
+print(arr3)
+print(arr3.shape)
+
+print('\n--Numpy data types--')
+print(f'Weights data type: {weights.dtype}')
+print(f'Climate data type: {climate_data.dtype}')
+
+# Single Matrix Multiplication
+print('\n---Matrix Multiplication---')
+print(f'Using np.matmul: {np.matmul(climate_data, weights)}')
+print(f'Using the @ operator: {climate_data @ weights}')
