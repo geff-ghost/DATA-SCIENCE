@@ -68,3 +68,10 @@ print(f'Climate data type: {climate_data.dtype}')
 print('\n---Matrix Multiplication---')
 print(f'Using np.matmul: {np.matmul(climate_data, weights)}')
 print(f'Using the @ operator: {climate_data @ weights}')
+
+climate_data = np.genfromtxt('climate.txt', delimiter=',', skip_header=1)
+
+print('\nReading a file into numpy array')
+print(climate_data)
+print(climate_data.shape)
+
