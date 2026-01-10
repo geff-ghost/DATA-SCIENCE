@@ -24,3 +24,13 @@ print(type(weights))
 # Indexing in Numpy
 print(weights[0])
 print(unova[2])
+
+# Operating on Numpy arrays
+print(f'\nnp.dot function: {np.dot(kanto, weights)}')
+
+print(f'\nUsing *: {(kanto * weights).sum()}')
+
+arr1 = np.array([1, 2, 3])
+arr2 = np.array([4, 5, 6])
+print(arr1 * arr2)
+print(arr1 + arr2)
