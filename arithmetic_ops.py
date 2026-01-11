@@ -14,23 +14,23 @@ arr3 = np.array([
 
 print(arr2 + arr3)
 
-# # Adding a scalar
-# print(arr2 + 3)
-# print()
-# # Element-wise subtraction
-# print(arr3 - arr2)
-# print()
-# # Division by scalar
-# print(arr2 / 2)
-# print()
-# # Element-wise multiplication
-# print(arr2 * arr3)
-# print()
-# # Modulus with scalar
-# print(arr2 % 4)
+# Adding a scalar
+print(arr2 + 3)
+print()
+# Element-wise subtraction
+print(arr3 - arr2)
+print()
+# Division by scalar
+print(arr2 / 2)
+print()
+# Element-wise multiplication
+print(arr2 * arr3)
+print()
+# Modulus with scalar
+print(arr2 % 4)
 
-# arr5 = np.array([2, 3])
-# print(arr5.shape)
+arr5 = np.array([2, 3])
+print(arr5.shape)
 
 print('---Logical Operations---')
 arr1 = np.array([[1, 2, 3], [3, 4, 5]])
@@ -87,3 +87,14 @@ print()
 
 # Using too many indices
 # print(arr3[1, 3, 2, 1]) -> IndexOutOfRange
+
+print('\n\n---Other ways of creating Numpy arrays---')
+print(f'All zeros\n{np.zeros((3, 2))}')
+print(f'\nAll ones\n{np.ones([2, 2, 3])}')
+print(f'\nIdentity matrix\n{np.eye(3)}')
+print(f'\nRandom Vector\n{np.random.rand(5)}')
+print(f'\nRandom Matrix\n{np.random.randn(2, 3)}')
+print(f'\nFull Value\n{np.full([2, 3], 45)}')
+print(f'\nRange with start, end, and stop\n{np.arange(10, 30, 2)}')
+print(np.arange(10, 30, 2).reshape(2, 5))
+print(f'\nEqually spaced numbers in a range\n{np.linspace(3, 27, 9)}')
