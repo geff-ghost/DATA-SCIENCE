@@ -1,4 +1,3 @@
-import os
 from functions import loan_emi
 
 with open('./data/loans1.txt', 'r') as file1:
