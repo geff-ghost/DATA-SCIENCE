@@ -67,3 +67,5 @@ print(type(covid_df.at[0, 'new_tests']))
 print(covid_df.new_tests.first_valid_index())
 
 print(covid_df.loc[3 : 6])
+
+print(covid_df.sample(5))
