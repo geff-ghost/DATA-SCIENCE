@@ -51,18 +51,46 @@ covid_df_copy = covid_df.copy()
 # to Covid 19 in Italy
 total_cases = covid_df.new_cases.sum()
 total_deaths = covid_df.new_deaths.sum()
-print(f"The total number of reported cases: '{total_cases}' and total reported deaths: '{total_deaths}'")
+# print(f"The total number of reported cases: '{total_cases}' and total reported deaths: '{total_deaths}'")
 
 # Q: What is the overall death rate (ratio of reported deaths to reported cases)
+
 death_ratio = covid_df.new_deaths.sum() / covid_df.new_cases.sum()
-print(f"The overall death ratio: '{death_ratio:.2f}'")
+
+# print(f"The overall death ratio: '{death_ratio:.2f}'")
 
 # Q: What is the overall number of tests conducted? A total of 935310 tests were conducted
 # before daily test numbers were being reported
-total_tests = covid_df.new_tests.sum() + 935310
-print(f"Total number of tests conducted in Italy: '{total_tests}'")
+
+initial_tests = 935310
+total_tests = covid_df.new_tests.sum() + initial_tests
+
+# print(f"Total number of tests conducted in Italy: '{total_tests}'")
 
 # Q: What fraction of test returned a positive result?
-positive_rate = total_cases / total_tests
-print('{:.2f}% of tests in Italy led to a positive diagnosis'.format(positive_rate))
 
+positive_rate = total_cases / total_tests
+
+# print('{:.2f}% of tests in Italy led to a positive diagnosis'.format(positive_rate))
+
+"Querying and Sorting rows"
+high_new_cases = covid_df[covid_df.new_cases > 1000]
+# print(high_new_cases)
+
+
+high_ratio_df = covid_df[covid_df.new_cases / covid_df.new_tests > positive_rate]
+# print(high_ratio_df)
+
+covid_df['positive_rate'] = covid_df.new_cases / covid_df.new_tests
+
+covid_df.drop(columns = ['positive_rate'], inplace = True)
+
+# print(covid_df.sort_values('new_cases', ascending=False).head(10))
+# print()
+# print(covid_df.sort_values('new_deaths', ascending=False).head(10))
+# print()
+# print(covid_df.sort_values('new_cases').head(10))
+print(covid_df.loc[36: 40])
+
+covid_df.at[38, 'new_cases'] = (covid_df.at[37, 'new_cases'] + covid_df.at[39, 'new_cases']) / 2
+print(covid_df.at[38, 'new_cases'])
