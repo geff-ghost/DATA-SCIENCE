@@ -20,29 +20,49 @@ covid_df = pd.read_csv('italy-covid-daywise.csv')
 # # Number of columns and rows
 # print(covid_df.shape)
 
-# Pandas format is similar to this
-covid_data_dict = {
-    'date': ['2020-08-30', '2020-08-31', '2020-09-01', '2020-09-02', '2020-09-03'],
-    'new_cases': [144, 1365, 996, 95, 1326],
-    'new_deaths': [1, 4, 6, 8, 6],
-    'new_test': [53541, 42583, 54395, None, None]
-}
+# # Pandas format is similar to this
+# covid_data_dict = {
+#     'date': ['2020-08-30', '2020-08-31', '2020-09-01', '2020-09-02', '2020-09-03'],
+#     'new_cases': [144, 1365, 996, 95, 1326],
+#     'new_deaths': [1, 4, 6, 8, 6],
+#     'new_test': [53541, 42583, 54395, None, None]
+# }
 
-print(covid_data_dict['new_cases'])
+# print(covid_data_dict['new_cases'])
 
-print(covid_df['new_cases'][23])
+# print(covid_df['new_cases'][23])
 
-print(covid_df['new_deaths'][45])
+# print(covid_df['new_deaths'][45])
 
-print(covid_df.at[34, 'new_tests'])
+# print(covid_df.at[34, 'new_tests'])
 
-cases_df = covid_df[['date', 'new_cases']]
-# print(cases_df)
+# cases_df = covid_df[['date', 'new_cases']]
+# # print(cases_df)
 
 covid_df_copy = covid_df.copy()
 
-print(covid_df.loc[43])
+# print(covid_df.loc[43])
 
-print(covid_df.new_tests.first_valid_index())
+# print(covid_df.new_tests.first_valid_index())
 
-print(covid_df.loc[13 : 16])
+# print(covid_df.loc[13 : 16])
+
+# Q: What is the total number of reported cases and deaths related
+# to Covid 19 in Italy
+total_cases = covid_df.new_cases.sum()
+total_deaths = covid_df.new_deaths.sum()
+print(f"The total number of reported cases: '{total_cases}' and total reported deaths: '{total_deaths}'")
+
+# Q: What is the overall death rate (ratio of reported deaths to reported cases)
+death_ratio = covid_df.new_deaths.sum() / covid_df.new_cases.sum()
+print(f"The overall death ratio: '{death_ratio:.2f}'")
+
+# Q: What is the overall number of tests conducted? A total of 935310 tests were conducted
+# before daily test numbers were being reported
+total_tests = covid_df.new_tests.sum() + 935310
+print(f"Total number of tests conducted in Italy: '{total_tests}'")
+
+# Q: What fraction of test returned a positive result?
+positive_rate = total_cases / total_tests
+print('{:.2f}% of tests in Italy led to a positive diagnosis'.format(positive_rate))
+
