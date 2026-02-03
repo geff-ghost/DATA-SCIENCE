@@ -107,20 +107,34 @@ covid_df_may = covid_df[covid_df.month == 5]
 
 # Extract the subset of columns to be aggregated
 covid_df_may_metrics = covid_df_may[['new_cases', 'new_deaths', 'new_tests']]
-print(covid_df_may_metrics)
+# print(covid_df_may_metrics)
 
 # Get the column-wise sum
 covid_may_totals = covid_df_may_metrics.sum()
 
 # Single operation statement
 covid_may_totals = covid_df[covid_df.month == 5][['new_cases', 'new_deaths', 'new_tests']].sum()
-print(covid_may_totals)
+# print(covid_may_totals)
 
-print()
 # Overall average
 new_cases_mean = covid_df.new_cases.mean()
-print('New cases mean',new_cases_mean)
+# print('New cases mean',new_cases_mean)
 
 # Average for Sundays
 sundays_mean = covid_df[covid_df.weekday == 6].new_cases.mean()
-print('Sunday mean: ', sundays_mean)
+# print('Sunday mean: ', sundays_mean)
+
+covid_month_df = covid_df.groupby('month')[['new_cases', 'new_deaths', 'new_tests']].sum()
+print(covid_month_df)
+print()
+
+covid_weekday_df = covid_df.groupby('weekday')[['new_cases', 'new_deaths', 'new_tests']].mean()
+print(covid_weekday_df)
+print()
+
+covid_df['total_cases'] = covid_df.new_cases.cumsum()
+covid_df['total_deaths'] = covid_df.new_deaths.cumsum()
+covid_df['total_tests'] = covid_df.new_tests.cumsum() + initial_tests
+
+print(covid_df)
+
