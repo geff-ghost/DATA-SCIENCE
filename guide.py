@@ -17,3 +17,13 @@ ages = pd.Series([22, 35, 58], name="Age")
 print(df['Age'].max())
 print(ages.max())
 
+titanic = pd.read_csv("data/titanic.csv")
+
+titanic.to_excel("data/titanic.xlsx", sheet_name="passengers", index=False)
+
+titanic = pd.read_excel("data/titanic.xlsx", sheet_name="passengers")
+
+print(titanic.info())
+
+
+
