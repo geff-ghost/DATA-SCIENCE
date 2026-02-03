@@ -90,7 +90,37 @@ covid_df.drop(columns = ['positive_rate'], inplace = True)
 # print(covid_df.sort_values('new_deaths', ascending=False).head(10))
 # print()
 # print(covid_df.sort_values('new_cases').head(10))
-print(covid_df.loc[36: 40])
+# print(covid_df.loc[36: 40])
 
 covid_df.at[38, 'new_cases'] = (covid_df.at[37, 'new_cases'] + covid_df.at[39, 'new_cases']) / 2
 print(covid_df.at[38, 'new_cases'])
+
+covid_df['date'] = pd.to_datetime(covid_df.date)
+
+covid_df['year'] = pd.DatetimeIndex(covid_df.date).year
+covid_df['month'] = pd.DatetimeIndex(covid_df.date).month
+covid_df['day'] = pd.DatetimeIndex(covid_df.date).day
+covid_df['weekday'] = pd.DatetimeIndex(covid_df.date).weekday
+
+# Query the rows for May
+covid_df_may = covid_df[covid_df.month == 5]
+
+# Extract the subset of columns to be aggregated
+covid_df_may_metrics = covid_df_may[['new_cases', 'new_deaths', 'new_tests']]
+print(covid_df_may_metrics)
+
+# Get the column-wise sum
+covid_may_totals = covid_df_may_metrics.sum()
+
+# Single operation statement
+covid_may_totals = covid_df[covid_df.month == 5][['new_cases', 'new_deaths', 'new_tests']].sum()
+print(covid_may_totals)
+
+print()
+# Overall average
+new_cases_mean = covid_df.new_cases.mean()
+print('New cases mean',new_cases_mean)
+
+# Average for Sundays
+sundays_mean = covid_df[covid_df.weekday == 6].new_cases.mean()
+print('Sunday mean: ', sundays_mean)
